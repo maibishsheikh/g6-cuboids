@@ -102,7 +102,7 @@ export default function StoryPhase({ state, dispatch }) {
               <div className="character-avatar-circle">
                 <span className="character-emoji">{panel.characterEmoji || '👦'}</span>
               </div>
-              <span className="character-name">{panel.character || 'Oliver'}</span>
+              <span className="character-name">{panel.character || 'Rina'}</span>
             </div>
           </div>
         </div>

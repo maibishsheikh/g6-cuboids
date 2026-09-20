@@ -94,13 +94,13 @@ export default function UnfoldFillLab({ onComplete, audioEnabled }) {
               <CuboidVisual
                 type="netUnfold"
                 data={{ l, b, h, unfoldProgress: 1 }}
-                compact={false}
+                maxH={155}
               />
             ) : (
               <CuboidVisual
                 type="layerFill"
                 data={{ l, b, h, layersShown }}
-                compact={false}
+                maxH={155}
               />
             )}
           </div>
@@ -108,16 +108,16 @@ export default function UnfoldFillLab({ onComplete, audioEnabled }) {
           {/* Running Layer Readout */}
           <div className="station-readout-card">
             <div className="readout-line">
-              <span className="readout-label">Base layer (l × b):</span>
-              <span className="readout-value highlight-green">{l} × {b} = {curBaseArea} cubes</span>
+              <span className="readout-label">Base layer:</span>
+              <span className="readout-value highlight-green">{l} × {b} = {curBaseArea}</span>
             </div>
             <div className="readout-line">
-              <span className="readout-label">Layers stacked:</span>
+              <span className="readout-label">Stacked:</span>
               <span className="readout-value highlight-blue">{layersShown} of {h} layers</span>
             </div>
             <div className="readout-line">
-              <span className="readout-label">Current Volume:</span>
-              <span className="readout-value highlight-gold">{curBaseArea} × {layersShown} = {curBaseArea * layersShown} cm³</span>
+              <span className="readout-label">Volume:</span>
+              <span className="readout-value highlight-gold">{curBaseArea * layersShown} cm³</span>
             </div>
           </div>
         </div>
@@ -127,63 +127,65 @@ export default function UnfoldFillLab({ onComplete, audioEnabled }) {
           <div className="control-group-box">
             <h4 className="control-heading">Adjust Box Dimensions (cm)</h4>
 
-            {/* Length control */}
-            <div className="slider-row">
-              <span className="slider-label">Length (l):</span>
-              <div className="stepper-wrap">
-                <button
-                  className="step-btn"
-                  onClick={() => setL((v) => Math.max(2, v - 1))}
-                  disabled={l <= 2}
-                  aria-label="Decrease length"
-                >−</button>
-                <span className="step-val">{l} cm</span>
-                <button
-                  className="step-btn"
-                  onClick={() => setL((v) => Math.min(10, v + 1))}
-                  disabled={l >= 10}
-                  aria-label="Increase length"
-                >+</button>
+            <div className="stepper-grid-3">
+              {/* Length control */}
+              <div className="stepper-col">
+                <span className="stepper-col-label">Length (l)</span>
+                <div className="stepper-wrap">
+                  <button
+                    className="step-btn"
+                    onClick={() => setL((v) => Math.max(2, v - 1))}
+                    disabled={l <= 2}
+                    aria-label="Decrease length"
+                  >−</button>
+                  <span className="step-val">{l} cm</span>
+                  <button
+                    className="step-btn"
+                    onClick={() => setL((v) => Math.min(10, v + 1))}
+                    disabled={l >= 10}
+                    aria-label="Increase length"
+                  >+</button>
+                </div>
               </div>
-            </div>
 
-            {/* Breadth control */}
-            <div className="slider-row">
-              <span className="slider-label">Breadth (b):</span>
-              <div className="stepper-wrap">
-                <button
-                  className="step-btn"
-                  onClick={() => setB((v) => Math.max(2, v - 1))}
-                  disabled={b <= 2}
-                  aria-label="Decrease breadth"
-                >−</button>
-                <span className="step-val">{b} cm</span>
-                <button
-                  className="step-btn"
-                  onClick={() => setB((v) => Math.min(10, v + 1))}
-                  disabled={b >= 10}
-                  aria-label="Increase breadth"
-                >+</button>
+              {/* Breadth control */}
+              <div className="stepper-col">
+                <span className="stepper-col-label">Breadth (b)</span>
+                <div className="stepper-wrap">
+                  <button
+                    className="step-btn"
+                    onClick={() => setB((v) => Math.max(2, v - 1))}
+                    disabled={b <= 2}
+                    aria-label="Decrease breadth"
+                  >−</button>
+                  <span className="step-val">{b} cm</span>
+                  <button
+                    className="step-btn"
+                    onClick={() => setB((v) => Math.min(10, v + 1))}
+                    disabled={b >= 10}
+                    aria-label="Increase breadth"
+                  >+</button>
+                </div>
               </div>
-            </div>
 
-            {/* Height control */}
-            <div className="slider-row">
-              <span className="slider-label">Height (h):</span>
-              <div className="stepper-wrap">
-                <button
-                  className="step-btn"
-                  onClick={() => setH((v) => Math.max(2, v - 1))}
-                  disabled={h <= 2}
-                  aria-label="Decrease height"
-                >−</button>
-                <span className="step-val">{h} cm</span>
-                <button
-                  className="step-btn"
-                  onClick={() => setH((v) => Math.min(10, v + 1))}
-                  disabled={h >= 10}
-                  aria-label="Increase height"
-                >+</button>
+              {/* Height control */}
+              <div className="stepper-col">
+                <span className="stepper-col-label">Height (h)</span>
+                <div className="stepper-wrap">
+                  <button
+                    className="step-btn"
+                    onClick={() => setH((v) => Math.max(2, v - 1))}
+                    disabled={h <= 2}
+                    aria-label="Decrease height"
+                  >−</button>
+                  <span className="step-val">{h} cm</span>
+                  <button
+                    className="step-btn"
+                    onClick={() => setH((v) => Math.min(10, v + 1))}
+                    disabled={h >= 10}
+                    aria-label="Increase height"
+                  >+</button>
+                </div>
               </div>
             </div>
 

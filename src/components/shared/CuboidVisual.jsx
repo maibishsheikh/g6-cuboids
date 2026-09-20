@@ -3,21 +3,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function CuboidVisual({ type, data, compact = false }) {
+export default function CuboidVisual({ type, data, compact = false, maxH = null, maxW = null }) {
   if (!data) return null;
 
-  const width = compact ? 260 : 340;
-  const height = compact ? 160 : 210;
+  const width = maxW || (compact ? 240 : 300);
+  const height = maxH || (compact ? 130 : 155);
 
   // ─── 1. Isometric Cuboid & Masked Cuboid ─────────────────────────────────
   if (type === 'isoCuboid' || type === 'isoCuboidMasked') {
     const { l = 8, b = 5, h = 4, unit = 'cm', hidden = null } = data;
     // Scale dimensions to fit SVG
     const maxDim = Math.max(l, b, h, 10);
-    const scale = (compact ? 60 : 85) / maxDim;
-    const sl = Math.max(18, Math.min(100, l * scale));
-    const sb = Math.max(16, Math.min(75, b * scale * 0.8));
-    const sh = Math.max(16, Math.min(85, h * scale));
+    const scale = (compact ? 48 : 65) / maxDim;
+    const sl = Math.max(16, Math.min(85, l * scale));
+    const sb = Math.max(14, Math.min(65, b * scale * 0.8));
+    const sh = Math.max(14, Math.min(75, h * scale));
 
     const cx = width / 2 - (sl - sb) * 0.35;
     const cy = height / 2 + sh * 0.25;
@@ -122,10 +122,10 @@ export default function CuboidVisual({ type, data, compact = false }) {
   if (type === 'baseHighlight') {
     const { l = 8, b = 5, h = 6, area = null, unit = 'cm' } = data;
     const maxDim = Math.max(l, b, h, 10);
-    const scale = (compact ? 60 : 85) / maxDim;
-    const sl = Math.max(22, Math.min(100, l * scale));
-    const sb = Math.max(18, Math.min(75, b * scale * 0.8));
-    const sh = Math.max(18, Math.min(85, h * scale));
+    const scale = (compact ? 48 : 65) / maxDim;
+    const sl = Math.max(18, Math.min(85, l * scale));
+    const sb = Math.max(16, Math.min(65, b * scale * 0.8));
+    const sh = Math.max(16, Math.min(75, h * scale));
 
     const cx = width / 2 - (sl - sb) * 0.35;
     const cy = height / 2 + sh * 0.25;
@@ -199,10 +199,10 @@ export default function CuboidVisual({ type, data, compact = false }) {
   if (type === 'faceHighlight') {
     const { l = 10, b = 6, h = 5, face = 'front', unit = 'cm' } = data;
     const maxDim = Math.max(l, b, h, 10);
-    const scale = (compact ? 60 : 85) / maxDim;
-    const sl = Math.max(22, Math.min(100, l * scale));
-    const sb = Math.max(18, Math.min(75, b * scale * 0.8));
-    const sh = Math.max(18, Math.min(85, h * scale));
+    const scale = (compact ? 48 : 65) / maxDim;
+    const sl = Math.max(18, Math.min(85, l * scale));
+    const sb = Math.max(16, Math.min(65, b * scale * 0.8));
+    const sh = Math.max(16, Math.min(75, h * scale));
 
     const cx = width / 2 - (sl - sb) * 0.35;
     const cy = height / 2 + sh * 0.25;
@@ -285,13 +285,13 @@ export default function CuboidVisual({ type, data, compact = false }) {
       overflow = false,
     } = data;
 
-    const tankW = compact ? 140 : 180;
-    const tankH = compact ? 110 : 140;
+    const tankW = compact ? 130 : 155;
+    const tankH = compact ? 85 : 105;
     const fillPercent = Math.min(100, Math.max(0, (wHeight / h) * 100));
     const waterLevelY = tankH * (1 - fillPercent / 100);
 
     const startX = (width - tankW) / 2;
-    const startY = (height - tankH) / 2;
+    const startY = (height - tankH) / 2 - 4;
 
     return (
       <div className="cuboid-visual-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -369,7 +369,7 @@ export default function CuboidVisual({ type, data, compact = false }) {
           {/* Bottom dimension labels */}
           <text
             x={startX + tankW / 2}
-            y={startY + tankH + 18}
+            y={startY + tankH + 16}
             fill="#cbd5e1"
             fontSize={compact ? '10' : '11'}
             textAnchor="middle"
@@ -386,7 +386,7 @@ export default function CuboidVisual({ type, data, compact = false }) {
         </svg>
 
         {waterCm3 !== undefined && (
-          <div style={{ fontSize: compact ? '0.78rem' : '0.85rem', color: '#38bdf8', fontWeight: 700, marginTop: '2px' }}>
+          <div style={{ fontSize: compact ? '0.75rem' : '0.82rem', color: '#38bdf8', fontWeight: 700, marginTop: '2px' }}>
             💧 {waterCm3.toLocaleString()} cm³ ({waterCm3 / 1000} L)
           </div>
         )}
@@ -397,9 +397,9 @@ export default function CuboidVisual({ type, data, compact = false }) {
   // ─── 5. Layer Fill (Simulate Station 1 & Practice) ───────────────────────
   if (type === 'layerFill') {
     const { l = 4, b = 3, h = 3, layersShown = 1 } = data;
-    const cubeSize = compact ? 14 : 18;
+    const cubeSize = compact ? 11 : 13;
     const startX = width / 2;
-    const startY = height / 2 + (h * cubeSize * 0.4);
+    const startY = height / 2 + (h * cubeSize * 0.35);
 
     return (
       <div className="cuboid-visual-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -456,7 +456,7 @@ export default function CuboidVisual({ type, data, compact = false }) {
   if (type === 'netUnfold') {
     const { l = 4, b = 3, h = 2, unfoldProgress = 1 } = data;
     // Cross net: Base in centre; Top, Back, Front, Left, Right attached
-    const scale = compact ? 12 : 16;
+    const scale = compact ? 10 : 13;
     const fw = l * scale;
     const fh = b * scale;
     const depth = h * scale;

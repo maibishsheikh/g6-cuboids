@@ -90,34 +90,34 @@ export default function AquariumFillMission({ onComplete, audioEnabled }) {
                 waterCm3: poured,
                 overflow: isOverflow,
               }}
-              compact={false}
+              maxH={155}
             />
           </div>
 
           {/* Three-Line Formula Readout */}
           <div className="station-readout-card">
             <div className="readout-line">
-              <span className="readout-label">Base Area (l × b):</span>
-              <span className="readout-value highlight-green">{l} × {b} = {curArea} cm²</span>
+              <span className="readout-label">Base (l × b):</span>
+              <span className="readout-value highlight-green">{curArea} cm²</span>
             </div>
             <div className="readout-line">
-              <span className="readout-label">Water Poured:</span>
+              <span className="readout-label">Poured:</span>
               <span className="readout-value highlight-blue">
-                {poured.toLocaleString()} ml = {poured.toLocaleString()} cm³ ({poured / 1000} L)
+                {poured.toLocaleString()} ml ({poured / 1000} L)
               </span>
             </div>
             {/* In Stage C, hide the direct height feedback until student checks */}
             {stage !== 'C' || stageCChecked ? (
               <div className="readout-line">
-                <span className="readout-label">Water Depth (Height):</span>
+                <span className="readout-label">Depth:</span>
                 <span className={`readout-value ${curHeight === (stage === 'B' ? stageBTargetH : stageCTargetH) ? 'highlight-gold' : ''}`}>
-                  {poured} ÷ {curArea} = <strong>{Math.round(curHeight * 10) / 10} cm</strong>
+                  <strong>{Math.round(curHeight * 10) / 10} cm</strong>
                 </span>
               </div>
             ) : (
               <div className="readout-line">
                 <span className="readout-label">Target Depth:</span>
-                <span className="readout-value highlight-gold">Goal: Exactly {stageCTargetH} cm deep</span>
+                <span className="readout-value highlight-gold">{stageCTargetH} cm</span>
               </div>
             )}
           </div>
@@ -131,39 +131,41 @@ export default function AquariumFillMission({ onComplete, audioEnabled }) {
               <h4 className="control-heading">Step 1: Choose Aquarium Dimensions</h4>
               <p className="control-subtext">Set length and breadth of the aquarium's rectangular bottom.</p>
 
-              {/* Length */}
-              <div className="slider-row">
-                <span className="slider-label">Length (l):</span>
-                <div className="stepper-wrap">
-                  <button
-                    className="step-btn"
-                    onClick={() => setL((v) => Math.max(10, v - 5))}
-                    disabled={l <= 10}
-                  >−</button>
-                  <span className="step-val">{l} cm</span>
-                  <button
-                    className="step-btn"
-                    onClick={() => setL((v) => Math.min(50, v + 5))}
-                    disabled={l >= 50}
-                  >+</button>
+              <div className="stepper-grid-2">
+                {/* Length */}
+                <div className="stepper-col">
+                  <span className="stepper-col-label">Length (l)</span>
+                  <div className="stepper-wrap">
+                    <button
+                      className="step-btn"
+                      onClick={() => setL((v) => Math.max(10, v - 5))}
+                      disabled={l <= 10}
+                    >−</button>
+                    <span className="step-val">{l} cm</span>
+                    <button
+                      className="step-btn"
+                      onClick={() => setL((v) => Math.min(50, v + 5))}
+                      disabled={l >= 50}
+                    >+</button>
+                  </div>
                 </div>
-              </div>
 
-              {/* Breadth */}
-              <div className="slider-row">
-                <span className="slider-label">Breadth (b):</span>
-                <div className="stepper-wrap">
-                  <button
-                    className="step-btn"
-                    onClick={() => setB((v) => Math.max(10, v - 5))}
-                    disabled={b <= 10}
-                  >−</button>
-                  <span className="step-val">{b} cm</span>
-                  <button
-                    className="step-btn"
-                    onClick={() => setB((v) => Math.min(40, v + 5))}
-                    disabled={b >= 40}
-                  >+</button>
+                {/* Breadth */}
+                <div className="stepper-col">
+                  <span className="stepper-col-label">Breadth (b)</span>
+                  <div className="stepper-wrap">
+                    <button
+                      className="step-btn"
+                      onClick={() => setB((v) => Math.max(10, v - 5))}
+                      disabled={b <= 10}
+                    >−</button>
+                    <span className="step-val">{b} cm</span>
+                    <button
+                      className="step-btn"
+                      onClick={() => setB((v) => Math.min(40, v + 5))}
+                      disabled={b >= 40}
+                    >+</button>
+                  </div>
                 </div>
               </div>
 

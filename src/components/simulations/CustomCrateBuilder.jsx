@@ -75,7 +75,7 @@ export default function CustomCrateBuilder({ onComplete, audioEnabled }) {
             <CuboidVisual
               type={curRound.mode === 'baseArea' ? 'baseHighlight' : 'isoCuboid'}
               data={{ l, b, h, area: curArea, unit: 'cm' }}
-              compact={false}
+              maxH={155}
             />
           </div>
 
@@ -104,7 +104,7 @@ export default function CustomCrateBuilder({ onComplete, audioEnabled }) {
           {/* Solutions tally chip */}
           {solutions.size > 0 && (
             <div className="solutions-chip anim-fade-in">
-              ✨ Unique crate designs found for this target: <strong>{solutions.size}</strong>
+              ✨ Unique designs found: <strong>{solutions.size}</strong>
             </div>
           )}
         </div>
@@ -114,63 +114,65 @@ export default function CustomCrateBuilder({ onComplete, audioEnabled }) {
           <div className="control-group-box">
             <h4 className="control-heading">Adjust Crate Dimensions (1–20 cm)</h4>
 
-            {/* Length control */}
-            <div className="slider-row">
-              <span className="slider-label">Length (l):</span>
-              <div className="stepper-wrap">
-                <button
-                  className="step-btn"
-                  onClick={() => setL((v) => Math.max(1, v - 1))}
-                  disabled={l <= 1}
-                  aria-label="Decrease length"
-                >−</button>
-                <span className="step-val">{l} cm</span>
-                <button
-                  className="step-btn"
-                  onClick={() => setL((v) => Math.min(20, v + 1))}
-                  disabled={l >= 20}
-                  aria-label="Increase length"
-                >+</button>
+            <div className="stepper-grid-3">
+              {/* Length control */}
+              <div className="stepper-col">
+                <span className="stepper-col-label">Length (l)</span>
+                <div className="stepper-wrap">
+                  <button
+                    className="step-btn"
+                    onClick={() => setL((v) => Math.max(1, v - 1))}
+                    disabled={l <= 1}
+                    aria-label="Decrease length"
+                  >−</button>
+                  <span className="step-val">{l} cm</span>
+                  <button
+                    className="step-btn"
+                    onClick={() => setL((v) => Math.min(20, v + 1))}
+                    disabled={l >= 20}
+                    aria-label="Increase length"
+                  >+</button>
+                </div>
               </div>
-            </div>
 
-            {/* Breadth control */}
-            <div className="slider-row">
-              <span className="slider-label">Breadth (b):</span>
-              <div className="stepper-wrap">
-                <button
-                  className="step-btn"
-                  onClick={() => setB((v) => Math.max(1, v - 1))}
-                  disabled={b <= 1}
-                  aria-label="Decrease breadth"
-                >−</button>
-                <span className="step-val">{b} cm</span>
-                <button
-                  className="step-btn"
-                  onClick={() => setB((v) => Math.min(20, v + 1))}
-                  disabled={b >= 20}
-                  aria-label="Increase breadth"
-                >+</button>
+              {/* Breadth control */}
+              <div className="stepper-col">
+                <span className="stepper-col-label">Breadth (b)</span>
+                <div className="stepper-wrap">
+                  <button
+                    className="step-btn"
+                    onClick={() => setB((v) => Math.max(1, v - 1))}
+                    disabled={b <= 1}
+                    aria-label="Decrease breadth"
+                  >−</button>
+                  <span className="step-val">{b} cm</span>
+                  <button
+                    className="step-btn"
+                    onClick={() => setB((v) => Math.min(20, v + 1))}
+                    disabled={b >= 20}
+                    aria-label="Increase breadth"
+                  >+</button>
+                </div>
               </div>
-            </div>
 
-            {/* Height control */}
-            <div className="slider-row">
-              <span className="slider-label">Height (h):</span>
-              <div className="stepper-wrap">
-                <button
-                  className="step-btn"
-                  onClick={() => setH((v) => Math.max(1, v - 1))}
-                  disabled={h <= 1}
-                  aria-label="Decrease height"
-                >−</button>
-                <span className="step-val">{h} cm</span>
-                <button
-                  className="step-btn"
-                  onClick={() => setH((v) => Math.min(20, v + 1))}
-                  disabled={h >= 20}
-                  aria-label="Increase height"
-                >+</button>
+              {/* Height control */}
+              <div className="stepper-col">
+                <span className="stepper-col-label">Height (h)</span>
+                <div className="stepper-wrap">
+                  <button
+                    className="step-btn"
+                    onClick={() => setH((v) => Math.max(1, v - 1))}
+                    disabled={h <= 1}
+                    aria-label="Decrease height"
+                  >−</button>
+                  <span className="step-val">{h} cm</span>
+                  <button
+                    className="step-btn"
+                    onClick={() => setH((v) => Math.min(20, v + 1))}
+                    disabled={h >= 20}
+                    aria-label="Increase height"
+                  >+</button>
+                </div>
               </div>
             </div>
 
