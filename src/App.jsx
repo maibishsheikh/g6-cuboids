@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useReducer, useEffect, useCallback } from 'react';
+import React, { useReducer, useEffect, useCallback, useRef } from 'react';
 import './App.css';
 import IntroScreen      from './components/IntroScreen.jsx';
 import ProgressMap      from './components/ProgressMap.jsx';
@@ -13,6 +13,7 @@ import { generateSessionQuestions } from './utils/shuffle.js';
 import { checkBadges }  from './utils/badgeEngine.js';
 import { calcXP, calcStars } from './utils/scoring.js';
 import questionBank     from './data/questionBank.js';
+import { STORY_PANELS } from './data/storyContent.js';
 
 const initialState = {
   phase: 'intro',
@@ -43,7 +44,8 @@ function reducer(state, action) {
       return { ...state, phase: action.payload };
 
     case 'NEXT_STORY_PANEL':
-      if (state.storyPanel >= 3) {
+      // Dynamic panel count generalization (TRD §1.2)
+      if (state.storyPanel >= STORY_PANELS.length - 1) {
         return {
           ...state,
           phase: 'simulate',
@@ -192,6 +194,7 @@ function reducer(state, action) {
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const headerRef = useRef(null);
 
   // Initialize questions on session load
   useEffect(() => {
@@ -204,6 +207,23 @@ export default function App() {
     newBadges.forEach((id) => dispatch({ type: 'UNLOCK_BADGE', payload: id }));
   }, [state.phaseComplete, state.simStationsComplete, state.districtScores, state.maxStreak, state.currentQuestion, state.districtCorrect]);
 
+  // Viewport-clipping fix: dynamically measure header height and update --header-h (TRD §1.4)
+  useEffect(() => {
+    if (!headerRef.current) return;
+    const updateHeaderH = () => {
+      if (headerRef.current) {
+        const h = headerRef.current.offsetHeight;
+        if (h > 0) {
+          document.documentElement.style.setProperty('--header-h', `${h}px`);
+        }
+      }
+    };
+    updateHeaderH();
+    const observer = new ResizeObserver(updateHeaderH);
+    observer.observe(headerRef.current);
+    return () => observer.disconnect();
+  }, [state.phase]);
+
   const goHome = useCallback(() => {
     dispatch({ type: 'SET_PHASE', payload: 'intro' });
   }, []);
@@ -213,7 +233,7 @@ export default function App() {
       <FloatingNumbers />
 
       {state.phase !== 'intro' && (
-        <header className="app-header">
+        <header className="app-header" ref={headerRef}>
           <button className="home-btn" onClick={goHome} aria-label="Home">
             <span className="home-icon">🏠</span>
             <span className="home-text">Home</span>

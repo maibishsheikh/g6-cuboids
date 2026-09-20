@@ -9,8 +9,9 @@ import story1 from '../../assets/story/1.png';
 import story2 from '../../assets/story/2.png';
 import story3 from '../../assets/story/3.png';
 import story4 from '../../assets/story/4.png';
+import story5 from '../../assets/story/5.png';
 
-const STORY_IMAGES = [story1, story2, story3, story4];
+const STORY_IMAGES = [story1, story2, story3, story4, story5];
 
 function StoryImage({ panel }) {
   const [imgError, setImgError] = useState(false);

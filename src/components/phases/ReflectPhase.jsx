@@ -11,29 +11,29 @@ import questionBank from '../../data/questionBank.js';
 
 const REFLECT_QUESTIONS = [
   {
-    q: "1. How many cents are in a one-dollar ($1.00) coin?",
+    q: "1. A cuboid's volume is 540 cm³ and its base area is 45 cm². Which calculation gives its height?",
     options: [
-      "100 cents",
-      "50 cents",
-      "10 cents",
+      "540 ÷ 45 = 12 cm (Division reverses Base Area × Height)",
+      "540 × 45 = 24 300 cm",
+      "540 − 45 = 495 cm",
     ],
     correct: 0,
   },
   {
-    q: "2. Oliver pays with a $1.00 coin for an 85¢ muffin. How is his change calculated?",
+    q: "2. Wei Jie writes that a parcel holds 200 cm². What is wrong with his answer?",
     options: [
-      "Amount Paid − Price = $1.00 − 85¢ = 15¢",
-      "Add both numbers: $1.00 + 85¢ = $1.85",
-      "Change is always a fixed 50¢",
+      "Volume is 3D space inside, so it must be measured in cubic units (cm³), not square units (cm²)",
+      "He forgot to add the length and breadth",
+      "Carton capacity can only be measured in whole litres",
     ],
     correct: 0,
   },
   {
-    q: "3. What is the golden rule when adding prices in dollars and cents?",
+    q: "3. An aquarium's base is 40 cm by 20 cm and 4 litres of water are poured in. How deep is the water?",
     options: [
-      "Keep dollars with dollars and cents with cents",
-      "Ignore the decimal points completely",
-      "Always subtract the smaller number",
+      "5 cm deep (4 litres = 4000 cm³; 4000 ÷ 800 cm² base = 5 cm)",
+      "50 cm deep (divided 4000 by 80)",
+      "500 cm deep",
     ],
     correct: 0,
   },
@@ -86,9 +86,9 @@ export default function ReflectPhase({ state, dispatch }) {
       <div className="reflect-wrap">
         <div className="trophy-card glass-card anim-bounce-in">
           <div className="trophy-icon">🏆</div>
-          <h1 className="trophy-title headline">You're a Money Grand Master!</h1>
+          <h1 className="trophy-title headline">You're a Depot Grand Master!</h1>
           <p className="trophy-sub subheadline" style={{ color: 'var(--gold)' }}>
-            Money, Coins &amp; Change Mastery Complete ✅
+            Volume, Reverse Dimensions &amp; Capacity Mastery Complete ✅
           </p>
 
           {/* Stats Breakdown */}

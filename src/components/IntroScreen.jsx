@@ -6,7 +6,7 @@ import questionBank from '../data/questionBank.js';
 
 const JOURNEY = [
   { num: '01', icon: '🔍', label: 'Wonder',   desc: 'Spark your curiosity' },
-  { num: '02', icon: '📖', label: 'Story',    desc: 'Oliver & Emma\'s market' },
+  { num: '02', icon: '📖', label: 'Story',    desc: "Rina & Wei Jie's depot" },
   { num: '03', icon: '🧪', label: 'Simulate', desc: '4 interactive labs' },
   { num: '04', icon: '🎮', label: 'Practice', desc: '10 worlds & bosses' },
   { num: '05', icon: '📓', label: 'Reflect',  desc: 'Review & scorecard' },
@@ -28,26 +28,26 @@ export default function IntroScreen({ state, dispatch }) {
     <div className="intro-wrap">
       {/* Top Badge */}
       <div className="intro-top-badge">
-        ✨ Curriculum · Money, Coins, Notes &amp; Change Grade 2–5
+        ✨ Singapore MOE Curriculum · Volume of Cuboids &amp; Capacity Grade 6
       </div>
 
       {/* Main Title */}
       <h1 className="intro-title">
-        <span className="text-orange">Money</span> <span className="text-white">Quest</span>
+        <span className="text-orange">Cuboid</span> <span className="text-white">Quest</span>
       </h1>
-      <h2 className="intro-subtitle">MoneyQuest · Master Coins, Notes, Prices &amp; Making Change</h2>
+      <h2 className="intro-subtitle">CuboidQuest · Master Volume, Reverse Dimensions &amp; Tank Capacity</h2>
 
       {/* Mascot Row */}
       <div className="intro-mascot-row">
-        <div className="intro-mascot-circle">🐷</div>
+        <div className="intro-mascot-circle">🦫</div>
         <div className="intro-speech-bubble">
-          Hi! I'm Penny. Ready to explore the market,<br />count coins, and make exact change? 🪙💵
+          Hi! I'm Bo the Beaver. Ready to explore the box depot,<br />calculate volumes, and fill aquarium tanks? 📦🧊
         </div>
       </div>
 
       {/* Description */}
       <p className="intro-desc">
-        Learn how to recognise coins &amp; notes, add prices, convert between cents &amp; dollars, and calculate change like a pro shopkeeper!
+        Master calculating cuboid volume, working backwards from base area to find missing heights and edges, packing cartons, and solving rectangular tank capacity problems!
       </p>
 
       {/* Journey Card */}
@@ -118,8 +118,8 @@ export default function IntroScreen({ state, dispatch }) {
           <div>100 Questions</div>
         </div>
         <div className="bottom-card">
-          <div className="bottom-card-icon" style={{ color: '#feca57' }}>🪙</div>
-          <div>Coins &amp; Notes</div>
+          <div className="bottom-card-icon" style={{ color: '#feca57' }}>📦</div>
+          <div>10 Depot Worlds</div>
         </div>
         <div className="bottom-card">
           <div className="bottom-card-icon" style={{ color: '#66bb6a' }}>✨</div>
