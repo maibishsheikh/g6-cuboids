@@ -1,0 +1,55 @@
+// src/data/storyContent.js
+// 5 Story Panels for CuboidQuest: Rina & Wei Jie's Box & Parcel Depot
+
+export const STORY_PANELS = [
+  {
+    panel: 0,
+    title: 'A Box Too Big',
+    text: "At the neighbourhood Box & Parcel Depot, customer orders are piling up! A customer needs two litres of fish food packed securely for the pet shop next door. Wei Jie grabs a huge cardboard carton from the back shelf. 'Will this hold it?' he asks. Rina shakes her head with a smile. 'How do you know it's the right size without measuring?' Neither of them can say for sure. Bo the Beaver taps his wooden ruler against the bench — it's time to measure the space inside!",
+    highlight: 'Volume is the 3-dimensional space inside a container!',
+    character: 'Rina & Wei Jie',
+    characterEmoji: '👩🏽‍🔧',
+    imageBg: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)',
+    imageEmoji: '📦',
+  },
+  {
+    panel: 1,
+    title: 'Six Faces, Three Numbers',
+    text: "Bo grabs a utility knife and carefully cuts along the seams of a carton, unfolding it flat onto the depot floor. 'Look!' exclaims Wei Jie. 'A flat net with six rectangular faces — top, bottom, front, back, and two sides!' Rina takes out her chalk and marks the edges. 'Even though there are six faces, their sizes are decided by just three measurements: Length, Breadth, and Height.'",
+    highlight: 'Every cuboid has 6 rectangular faces decided by length, breadth, and height!',
+    character: 'Bo the Beaver',
+    characterEmoji: '🦫',
+    imageBg: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+    imageEmoji: '📐',
+  },
+  {
+    panel: 2,
+    title: 'Layer by Layer',
+    text: "Wei Jie begins lining the bottom of a box with one-centimetre wooden cubes. Along the length, 6 cubes fit. Along the breadth, 4 cubes fit. 'Six times four is twenty-four cubes covering the bottom,' Wei Jie calculates. 'That is the Base Area!' notes Rina. Next, they stack cubes upwards. Each layer adds another 24 cubes. Three layers tall makes 24 times 3 = 72 cubic centimetres! 'Volume is simply base area multiplied by height!'",
+    highlight: 'Volume = Base Area × Height = Length × Breadth × Height!',
+    character: 'Wei Jie',
+    characterEmoji: '👦🏻',
+    imageBg: 'linear-gradient(135deg, #14532d 0%, #166534 100%)',
+    imageEmoji: '🧊',
+  },
+  {
+    panel: 3,
+    title: 'Working Backwards',
+    text: "A wooden delivery crate arrives at the loading dock stamped with a volume of 960 cubic centimetres. The shipping label shows a length of 12 cm and a breadth of 8 cm, but the height has rubbed off! 'How do we find the missing height?' asks Wei Jie. Rina smiles: 'We reverse the multiplication using division! Length times breadth is 96 square centimetres. Nine hundred and sixty divided by 96 gives a height of exactly 10 centimetres!'",
+    highlight: 'Work backwards with division: Height = Volume ÷ Base Area!',
+    character: 'Rina',
+    characterEmoji: '👩🏽‍🔧',
+    imageBg: 'linear-gradient(135deg, #701a75 0%, #86198f 100%)',
+    imageEmoji: '🔧',
+  },
+  {
+    panel: 4,
+    title: 'Fill the Tank',
+    text: "The pet shop owner calls in an urgent order: their new rectangular display aquarium has a base of 30 cm by 20 cm and needs water filled to an exact depth of 12 cm. 'Water behaves just like unit cubes!' Bo chitters happily. One cubic centimetre holds exactly one millilitre, and one thousand cubic centimetres make one litre. With a base area of 600 square centimetres and a height of 12 cm, they pour exactly 7.2 litres. The depot is officially ready for business!",
+    highlight: '1 cm³ = 1 ml, and 1000 cm³ = 1 Litre! Depth = Volume ÷ Base Area.',
+    character: 'Bo the Beaver',
+    characterEmoji: '🦫',
+    imageBg: 'linear-gradient(135deg, #0c4a6e 0%, #075985 100%)',
+    imageEmoji: '🐠',
+  },
+];
