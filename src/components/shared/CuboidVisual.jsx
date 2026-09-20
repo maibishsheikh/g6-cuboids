@@ -6,18 +6,18 @@ import { motion } from 'framer-motion';
 export default function CuboidVisual({ type, data, compact = false, maxH = null, maxW = null }) {
   if (!data) return null;
 
-  const width = maxW || (compact ? 240 : 300);
-  const height = maxH || (compact ? 130 : 155);
+  const width = maxW || (compact ? 260 : 440);
+  const height = maxH || (compact ? 150 : 240);
 
   // ─── 1. Isometric Cuboid & Masked Cuboid ─────────────────────────────────
   if (type === 'isoCuboid' || type === 'isoCuboidMasked') {
     const { l = 8, b = 5, h = 4, unit = 'cm', hidden = null } = data;
     // Scale dimensions to fit SVG
     const maxDim = Math.max(l, b, h, 10);
-    const scale = (compact ? 48 : 65) / maxDim;
-    const sl = Math.max(16, Math.min(85, l * scale));
-    const sb = Math.max(14, Math.min(65, b * scale * 0.8));
-    const sh = Math.max(14, Math.min(75, h * scale));
+    const scale = (compact ? 55 : 95) / maxDim;
+    const sl = Math.max(22, Math.min(135, l * scale));
+    const sb = Math.max(18, Math.min(95, b * scale * 0.8));
+    const sh = Math.max(18, Math.min(105, h * scale));
 
     const cx = width / 2 - (sl - sb) * 0.35;
     const cy = height / 2 + sh * 0.25;
@@ -80,10 +80,10 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
           {/* Dimension Labels */}
           {/* Length Label along right bottom edge */}
           <text
-            x={(p0.x + p1.x) / 2 + 10}
-            y={(p0.y + p1.y) / 2 + 16}
+            x={(p0.x + p1.x) / 2 + 12}
+            y={(p0.y + p1.y) / 2 + 18}
             fill={hidden === 'l' ? 'var(--gold)' : '#ffffff'}
-            fontSize={hidden === 'l' ? '18' : compact ? '12' : '13'}
+            fontSize={hidden === 'l' ? '20' : compact ? '12' : '15'}
             fontWeight="bold"
             textAnchor="middle"
           >
@@ -92,10 +92,10 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
 
           {/* Breadth Label along left bottom edge */}
           <text
-            x={(p0.x + p2.x) / 2 - 14}
-            y={(p0.y + p2.y) / 2 + 16}
+            x={(p0.x + p2.x) / 2 - 16}
+            y={(p0.y + p2.y) / 2 + 18}
             fill={hidden === 'b' ? 'var(--gold)' : '#ffffff'}
-            fontSize={hidden === 'b' ? '18' : compact ? '12' : '13'}
+            fontSize={hidden === 'b' ? '20' : compact ? '12' : '15'}
             fontWeight="bold"
             textAnchor="middle"
           >
@@ -104,10 +104,10 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
 
           {/* Height Label along front vertical edge */}
           <text
-            x={p0.x - 14}
+            x={p0.x - 16}
             y={(p0.y + p3.y) / 2}
             fill={hidden === 'h' ? 'var(--gold)' : '#ffffff'}
-            fontSize={hidden === 'h' ? '18' : compact ? '12' : '13'}
+            fontSize={hidden === 'h' ? '20' : compact ? '12' : '15'}
             fontWeight="bold"
             textAnchor="end"
           >
@@ -122,10 +122,10 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
   if (type === 'baseHighlight') {
     const { l = 8, b = 5, h = 6, area = null, unit = 'cm' } = data;
     const maxDim = Math.max(l, b, h, 10);
-    const scale = (compact ? 48 : 65) / maxDim;
-    const sl = Math.max(18, Math.min(85, l * scale));
-    const sb = Math.max(16, Math.min(65, b * scale * 0.8));
-    const sh = Math.max(16, Math.min(75, h * scale));
+    const scale = (compact ? 55 : 95) / maxDim;
+    const sl = Math.max(25, Math.min(135, l * scale));
+    const sb = Math.max(20, Math.min(95, b * scale * 0.8));
+    const sh = Math.max(20, Math.min(105, h * scale));
 
     const cx = width / 2 - (sl - sb) * 0.35;
     const cy = height / 2 + sh * 0.25;
@@ -173,18 +173,18 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
 
           {/* Base Area text pill in centre of base */}
           <g transform={`translate(${cx + (sl - sb) * 0.35}, ${cy - (sl + sb) * 0.15})`}>
-            <rect x="-55" y="-12" width="110" height="24" rx="12" fill="rgba(16, 185, 129, 0.9)" />
-            <text x="0" y="4" fill="#ffffff" fontSize={compact ? '10' : '11'} fontWeight="800" textAnchor="middle">
+            <rect x="-65" y="-14" width="130" height="28" rx="14" fill="rgba(16, 185, 129, 0.95)" />
+            <text x="0" y="5" fill="#ffffff" fontSize={compact ? '11' : '13'} fontWeight="800" textAnchor="middle">
               {area ? `Base: ${area} ${unit}²` : 'Base Area'}
             </text>
           </g>
 
           {/* Height label */}
           <text
-            x={p0.x - 14}
+            x={p0.x - 16}
             y={(p0.y + p3.y) / 2}
             fill="#facc15"
-            fontSize={compact ? '12' : '13'}
+            fontSize={compact ? '12' : '15'}
             fontWeight="bold"
             textAnchor="end"
           >
@@ -199,10 +199,10 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
   if (type === 'faceHighlight') {
     const { l = 10, b = 6, h = 5, face = 'front', unit = 'cm' } = data;
     const maxDim = Math.max(l, b, h, 10);
-    const scale = (compact ? 48 : 65) / maxDim;
-    const sl = Math.max(18, Math.min(85, l * scale));
-    const sb = Math.max(16, Math.min(65, b * scale * 0.8));
-    const sh = Math.max(16, Math.min(75, h * scale));
+    const scale = (compact ? 55 : 95) / maxDim;
+    const sl = Math.max(25, Math.min(135, l * scale));
+    const sb = Math.max(20, Math.min(95, b * scale * 0.8));
+    const sh = Math.max(20, Math.min(105, h * scale));
 
     const cx = width / 2 - (sl - sb) * 0.35;
     const cy = height / 2 + sh * 0.25;
@@ -251,7 +251,7 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
             x={isSide ? (p0.x + p2.x) / 2 - 4 : (p0.x + p1.x) / 2 + 4}
             y={(p0.y + p3.y) / 2}
             fill="#ffffff"
-            fontSize={compact ? '10' : '12'}
+            fontSize={compact ? '11' : '13'}
             fontWeight="bold"
             textAnchor="middle"
           >
@@ -260,10 +260,10 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
 
           {/* Dimension indicator for known dimension */}
           <text
-            x={(p0.x + p1.x) / 2 + 10}
-            y={(p0.y + p1.y) / 2 + 18}
+            x={(p0.x + p1.x) / 2 + 12}
+            y={(p0.y + p1.y) / 2 + 20}
             fill="#facc15"
-            fontSize={compact ? '11' : '12'}
+            fontSize={compact ? '12' : '15'}
             fontWeight="bold"
             textAnchor="middle"
           >
@@ -285,13 +285,13 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
       overflow = false,
     } = data;
 
-    const tankW = compact ? 130 : 155;
-    const tankH = compact ? 85 : 105;
+    const tankW = compact ? 150 : 250;
+    const tankH = compact ? 100 : 155;
     const fillPercent = Math.min(100, Math.max(0, (wHeight / h) * 100));
     const waterLevelY = tankH * (1 - fillPercent / 100);
 
     const startX = (width - tankW) / 2;
-    const startY = (height - tankH) / 2 - 4;
+    const startY = (height - tankH) / 2 - 8;
 
     return (
       <div className="cuboid-visual-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -309,10 +309,10 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
             y={startY}
             width={tankW}
             height={tankH}
-            rx="6"
+            rx="8"
             fill="rgba(255, 255, 255, 0.05)"
             stroke="#38bdf8"
-            strokeWidth="3"
+            strokeWidth="3.5"
           />
 
           {/* Water Fill */}
@@ -323,7 +323,7 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
               transition={{ duration: 0.4 }}
               x={startX + 3}
               width={tankW - 6}
-              rx="3"
+              rx="4"
               fill="url(#waterGrad)"
             />
           )}
@@ -336,13 +336,13 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
               x2={startX + tankW - 2}
               y2={startY + waterLevelY}
               stroke="#e0f2fe"
-              strokeWidth="2.5"
+              strokeWidth="3"
             />
           )}
 
           {/* Measurement ticks */}
           <line x1={startX - 6} y1={startY} x2={startX} y2={startY} stroke="#ffffff" strokeWidth="2" />
-          <text x={startX - 10} y={startY + 4} fill="#ffffff" fontSize="10" textAnchor="end">{h} cm</text>
+          <text x={startX - 10} y={startY + 4} fill="#ffffff" fontSize={compact ? '10' : '12'} fontWeight="bold" textAnchor="end">{h} cm</text>
 
           {fillPercent > 0 && (
             <>
@@ -352,13 +352,13 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
                 x2={startX + tankW + 8}
                 y2={startY + waterLevelY}
                 stroke="#38bdf8"
-                strokeWidth="2"
+                strokeWidth="2.5"
               />
               <text
                 x={startX + tankW + 12}
-                y={startY + waterLevelY + 4}
+                y={startY + waterLevelY + 5}
                 fill="#38bdf8"
-                fontSize={compact ? '10' : '11'}
+                fontSize={compact ? '11' : '13'}
                 fontWeight="bold"
               >
                 {Math.round(wHeight)} cm
@@ -369,9 +369,10 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
           {/* Bottom dimension labels */}
           <text
             x={startX + tankW / 2}
-            y={startY + tankH + 16}
+            y={startY + tankH + 18}
             fill="#cbd5e1"
-            fontSize={compact ? '10' : '11'}
+            fontSize={compact ? '11' : '13'}
+            fontWeight="bold"
             textAnchor="middle"
           >
             Base: {l} cm × {b} cm
@@ -379,14 +380,14 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
 
           {/* Overflow indicator if tank overflows */}
           {overflow && (
-            <text x={width / 2} y={startY - 6} fill="#ef4444" fontSize="11" fontWeight="bold" textAnchor="middle">
+            <text x={width / 2} y={startY - 6} fill="#ef4444" fontSize="13" fontWeight="bold" textAnchor="middle">
               ⚠️ TANK OVERFLOW!
             </text>
           )}
         </svg>
 
         {waterCm3 !== undefined && (
-          <div style={{ fontSize: compact ? '0.75rem' : '0.82rem', color: '#38bdf8', fontWeight: 700, marginTop: '2px' }}>
+          <div style={{ fontSize: compact ? '0.82rem' : '0.96rem', color: '#38bdf8', fontWeight: 800, marginTop: '4px' }}>
             💧 {waterCm3.toLocaleString()} cm³ ({waterCm3 / 1000} L)
           </div>
         )}
@@ -397,9 +398,9 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
   // ─── 5. Layer Fill (Simulate Station 1 & Practice) ───────────────────────
   if (type === 'layerFill') {
     const { l = 4, b = 3, h = 3, layersShown = 1 } = data;
-    const cubeSize = compact ? 11 : 13;
+    const cubeSize = compact ? 12 : 18;
     const startX = width / 2;
-    const startY = height / 2 + (h * cubeSize * 0.35);
+    const startY = height / 2 + (h * cubeSize * 0.38);
 
     return (
       <div className="cuboid-visual-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -421,25 +422,25 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
                       <polygon
                         points={`0,${-cubeSize * 0.5} ${cubeSize * 0.85},0 0,${cubeSize * 0.5} ${-cubeSize * 0.85},0`}
                         fill={faceColor}
-                        opacity="0.85"
+                        opacity="0.9"
                         stroke={strokeColor}
-                        strokeWidth="1"
+                        strokeWidth="1.2"
                       />
                       {/* Left wall */}
                       <polygon
                         points={`${-cubeSize * 0.85},0 0,${cubeSize * 0.5} 0,${cubeSize * 1.2} ${-cubeSize * 0.85},${cubeSize * 0.7}`}
                         fill={faceColor}
-                        opacity="0.6"
+                        opacity="0.65"
                         stroke={strokeColor}
-                        strokeWidth="1"
+                        strokeWidth="1.2"
                       />
                       {/* Right wall */}
                       <polygon
                         points={`0,${cubeSize * 0.5} ${cubeSize * 0.85},0 ${cubeSize * 0.85},${cubeSize * 0.7} 0,${cubeSize * 1.2}`}
                         fill={faceColor}
-                        opacity="0.45"
+                        opacity="0.5"
                         stroke={strokeColor}
-                        strokeWidth="1"
+                        strokeWidth="1.2"
                       />
                     </g>
                   );
@@ -456,7 +457,7 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
   if (type === 'netUnfold') {
     const { l = 4, b = 3, h = 2, unfoldProgress = 1 } = data;
     // Cross net: Base in centre; Top, Back, Front, Left, Right attached
-    const scale = compact ? 10 : 13;
+    const scale = compact ? 11 : 18;
     const fw = l * scale;
     const fh = b * scale;
     const depth = h * scale;
@@ -474,40 +475,40 @@ export default function CuboidVisual({ type, data, compact = false, maxH = null,
               y={-fh / 2}
               width={fw}
               height={fh}
-              fill="rgba(16, 185, 129, 0.4)"
+              fill="rgba(16, 185, 129, 0.45)"
               stroke="#10b981"
-              strokeWidth="2"
+              strokeWidth="2.5"
             />
-            <text x="0" y="4" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle">BASE</text>
+            <text x="0" y="5" fill="#ffffff" fontSize={compact ? '10' : '12'} fontWeight="bold" textAnchor="middle">BASE</text>
 
             {/* Top Face (folds up past back) */}
             <g transform={`translate(0, ${-fh / 2 - depth * unfoldProgress})`}>
-              <rect x={-fw / 2} y={-fh} width={fw} height={fh} fill="rgba(245, 158, 11, 0.3)" stroke="#f59e0b" strokeWidth="1.5" />
-              <text x="0" y={-fh / 2 + 3} fill="#ffffff" fontSize="9" textAnchor="middle">TOP</text>
+              <rect x={-fw / 2} y={-fh} width={fw} height={fh} fill="rgba(245, 158, 11, 0.35)" stroke="#f59e0b" strokeWidth="2" />
+              <text x="0" y={-fh / 2 + 4} fill="#ffffff" fontSize={compact ? '9' : '11'} fontWeight="bold" textAnchor="middle">TOP</text>
             </g>
 
             {/* Back Face */}
             <g transform={`translate(0, ${-fh / 2})`}>
-              <rect x={-fw / 2} y={-depth * unfoldProgress} width={fw} height={depth * unfoldProgress} fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" strokeWidth="1.5" />
-              <text x="0" y={(-depth * unfoldProgress) / 2 + 3} fill="#ffffff" fontSize="8" textAnchor="middle">BACK</text>
+              <rect x={-fw / 2} y={-depth * unfoldProgress} width={fw} height={depth * unfoldProgress} fill="rgba(59, 130, 246, 0.35)" stroke="#3b82f6" strokeWidth="2" />
+              <text x="0" y={(-depth * unfoldProgress) / 2 + 4} fill="#ffffff" fontSize={compact ? '8' : '11'} fontWeight="bold" textAnchor="middle">BACK</text>
             </g>
 
             {/* Front Face */}
             <g transform={`translate(0, ${fh / 2})`}>
-              <rect x={-fw / 2} y="0" width={fw} height={depth * unfoldProgress} fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" strokeWidth="1.5" />
-              <text x="0" y={(depth * unfoldProgress) / 2 + 3} fill="#ffffff" fontSize="8" textAnchor="middle">FRONT</text>
+              <rect x={-fw / 2} y="0" width={fw} height={depth * unfoldProgress} fill="rgba(59, 130, 246, 0.35)" stroke="#3b82f6" strokeWidth="2" />
+              <text x="0" y={(depth * unfoldProgress) / 2 + 4} fill="#ffffff" fontSize={compact ? '8' : '11'} fontWeight="bold" textAnchor="middle">FRONT</text>
             </g>
 
             {/* Left Face */}
             <g transform={`translate(${-fw / 2}, 0)`}>
-              <rect x={-depth * unfoldProgress} y={-fh / 2} width={depth * unfoldProgress} height={fh} fill="rgba(168, 85, 247, 0.3)" stroke="#a855f7" strokeWidth="1.5" />
-              <text x={(-depth * unfoldProgress) / 2} y="3" fill="#ffffff" fontSize="8" textAnchor="middle">LEFT</text>
+              <rect x={-depth * unfoldProgress} y={-fh / 2} width={depth * unfoldProgress} height={fh} fill="rgba(168, 85, 247, 0.35)" stroke="#a855f7" strokeWidth="2" />
+              <text x={(-depth * unfoldProgress) / 2} y="4" fill="#ffffff" fontSize={compact ? '8' : '11'} fontWeight="bold" textAnchor="middle">LEFT</text>
             </g>
 
             {/* Right Face */}
             <g transform={`translate(${fw / 2}, 0)`}>
-              <rect x="0" y={-fh / 2} width={depth * unfoldProgress} height={fh} fill="rgba(168, 85, 247, 0.3)" stroke="#a855f7" strokeWidth="1.5" />
-              <text x={(depth * unfoldProgress) / 2} y="3" fill="#ffffff" fontSize="8" textAnchor="middle">RIGHT</text>
+              <rect x="0" y={-fh / 2} width={depth * unfoldProgress} height={fh} fill="rgba(168, 85, 247, 0.35)" stroke="#a855f7" strokeWidth="2" />
+              <text x={(depth * unfoldProgress) / 2} y="4" fill="#ffffff" fontSize={compact ? '8' : '11'} fontWeight="bold" textAnchor="middle">RIGHT</text>
             </g>
           </g>
         </svg>

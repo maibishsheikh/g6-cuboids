@@ -90,7 +90,7 @@ export default function AquariumFillMission({ onComplete, audioEnabled }) {
                 waterCm3: poured,
                 overflow: isOverflow,
               }}
-              maxH={155}
+              maxH={240}
             />
           </div>
 

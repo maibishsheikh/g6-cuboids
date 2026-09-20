@@ -75,7 +75,7 @@ export default function CustomCrateBuilder({ onComplete, audioEnabled }) {
             <CuboidVisual
               type={curRound.mode === 'baseArea' ? 'baseHighlight' : 'isoCuboid'}
               data={{ l, b, h, area: curArea, unit: 'cm' }}
-              maxH={155}
+              maxH={240}
             />
           </div>
 

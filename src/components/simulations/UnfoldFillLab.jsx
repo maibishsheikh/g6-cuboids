@@ -94,13 +94,13 @@ export default function UnfoldFillLab({ onComplete, audioEnabled }) {
               <CuboidVisual
                 type="netUnfold"
                 data={{ l, b, h, unfoldProgress: 1 }}
-                maxH={155}
+                maxH={240}
               />
             ) : (
               <CuboidVisual
                 type="layerFill"
                 data={{ l, b, h, layersShown }}
-                maxH={155}
+                maxH={240}
               />
             )}
           </div>

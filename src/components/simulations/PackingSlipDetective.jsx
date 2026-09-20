@@ -141,11 +141,11 @@ export default function PackingSlipDetective({ onComplete, audioEnabled }) {
       <div className="station-body">
         {/* Left: Box Visual & Bo's Tip */}
         <div className="station-visual-pane">
-          <div className="station-canvas" style={{ minHeight: '135px' }}>
+          <div className="station-canvas" style={{ minHeight: '220px' }}>
             <CuboidVisual
               type={docket.boxData.face ? 'faceHighlight' : docket.boxData.area ? 'baseHighlight' : 'isoCuboid'}
               data={docket.boxData}
-              maxH={155}
+              maxH={240}
             />
           </div>
 
