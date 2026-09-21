@@ -86,6 +86,19 @@ function reducer(state, action) {
         streak: 0,
       };
 
+    case 'SELECT_DISTRICT': {
+      const distIdx = action.payload;
+      return {
+        ...state,
+        currentDistrict: distIdx,
+        currentQuestion: distIdx * 10,
+        showFeedback: null,
+        feedbackMsg: '',
+        hintsUsed: 0,
+        attemptCount: 0,
+      };
+    }
+
     case 'ANSWER_CORRECT': {
       const newStreak = state.streak + 1;
       const maxStreak = Math.max(state.maxStreak, newStreak);
